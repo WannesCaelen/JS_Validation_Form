@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+    <script src="js/countries.js"></script>
+    <script src="js/personal.js"></script>
+    <title>PE Opdracht JavaScript Wannes Caelen R0937450</title>
+</head>
+<body>
+
+    <!-- begin intro text -->
+    <div class="container">
+    <div class="row mb-3 text-start">
+        <div class="col-md-8">
+          <h1 class="display-5 fw-bold text-start">Registreer je boek</h1>
+          <p class="text-start">Heb je een educatief boek geschreven en wil je dit beschikbaar maken voor andere onderwijsinstellingen? Meld nu jouw boek aan bij learn.INC en word auteur!</p>
+      <!-- einde intro text -->
+      <!-- container zodat we zelfde opmaak hebben.-->
+      <!-- Kleine titel Auteursgegevens -->
+        <h2 class="mt-4 text-start">Auteursgegevens:</h2>
+
+        <!-- divs met voornaam, naam, en een placeholder voor waar de errors komen. -->
+        <div class="row mb-3 text-center">
+          <div class="col-sm-6 themed-grid-col text-start" >Voornaam
+            <input type="text" class="form-control" id="Voornaam" placeholder="Uw voornaam">
+          </div>
+          <div class="col-sm-6 themed-grid-col text-start">Naam
+            <input type="text" class="form-control" id="Naam" placeholder="Uw naam">
+          </div>
+        </div>
+        
+        <!-- Rijksregister nummer div-->
+        <div class="row mb-3 text-center">
+            <div class="themed-grid-col text-start">Rijksregister nummer:
+                <input type="text" class="form-control" id="RijksregisterNummer" placeholder="Rijksregister nummer">
+            </div>
+          </div>
+        
+          <!-- divs met woonplaats, geboortedatum, en een placeholder voor waar de errors komen. -->
+          <div class="row mb-3 text-center">
+            <div class="col-sm-6 themed-grid-col text-start">Woonplaats:
+                <div class="input-group">
+                    <select class="form-control" name="Woonplaats" id="Woonplaats">
+                        <option value="0">Woonplaats</option>
+                      </select>
+                </div>
+            </div>
+
+            <div class="col-sm-6 themed-grid-col text-start">Geboortedatum:
+                <input type="date" class="form-control" id="GeboorteDatum">
+            </div>
+          </div>
+
+          <div class="row mb-3 text-center">
+            <div class="themed-grid-col text-start">E-Mail:
+                <input type="email" class="form-control" id="EMail" placeholder="E-Mail adres" autocomplete="email">
+            <!-- autocomplete ="email" toegevoegd. anders had ik een warning in mijn console.-->
+            </div>
+          </div>
+
+      <!-- Kleine titel Gegevens van het boek -->
+          <h2 class="mt-4 text-start">Gegevens van het boek: </h2>
+
+      <!-- Titel div-->
+          <div class="row mb-3 text-center">
+            <div class="themed-grid-col text-start" >Titel
+                <input type="text" class="form-control" id="Titel" placeholder="De titel van uw boek ">
+            </div>
+          </div>
+        
+      <!-- Onderwerp div-->
+      <div class="row mb-3 text-center">
+        <div class="themed-grid-col text-start">Onderwerp
+            <div class="input-group">
+                <select class="form-control" name="Onderwerp" id="Onderwerp">
+                    <option value="0">Kies een onderwerp</option>
+                    <option value="1">JavaScript</option>
+                    <option value="2">DataBases</option>
+                    <option value="3">Programming</option>
+                  </select>
+                <button type="button" class="btn btn-primary" id="ToevoegenBtn">Toevoegen</button>
+            </div>
+        </div>
+    </div>
+    
+
+      <!-- Aantal pagina's div-->
+          <div class="row mb-3 text-center">
+            <div class="themed-grid-col text-start" >Aantal pagina's:
+                <input type="text" class="form-control" id="AantalPaginas" placeholder="Het aantal pagina's van uw boek">
+            </div>
+          </div>
+
+      <!-- upload div-->
+      <div class="row mb-3 text-center">
+        <div class="themed-grid-col text-start">Upload:
+            <div class="input-group">
+                <input type="file" class="form-control" id="Upload">
+            </div>
+        </div>
+    </div>
+
+    <div class="row mb-3 text-center">
+      <div class="col-sm-6 themed-grid-col text-start form-check" >
+        <input type="checkbox" class="form-check-input" id="free-work" onchange="ToggleBetaalMethodes()" checked>
+        <label class="form-check-label" for="free-work">
+          Ik stel mijn werk gratis ter beschikking. (Waarvoor hartelijk dank! Gratis onderwijs is belangrijk zodat iedereen de kans heeft op een mooie en goedbetaalde job.)
+        </label>
+      </div>
+
+      <!-- begin 2de deel van checkbox -->
+      <div class="col-sm-6 themed-grid-col text-start form-check" id="payment-options" style="display: none;" >
+         Hoe wil je betaald worden?
+        <div class="list-group">
+          <label class="list-group-item d-flex gap-2">
+            <input class="form-check-input flex-shrink-0" type="radio" name="payment-method" id="forfait" value="" checked="">
+            <span> Forfait van 10000€ </span>
+          </label>
+          <label class="list-group-item d-flex gap-2">
+            <input class="form-check-input flex-shrink-0" type="radio" name="payment-method" id="per-book" value="">
+            <span> 5€ Per verkocht boek </span>
+          </label>
+          <label class="list-group-item d-flex gap-2">
+            <input class="form-check-input flex-shrink-0" type="radio" name="payment-method" id="percentage" value="">
+            <span> 10% Van alle verkoop </span>
+          </label>
+        </div>
+      </div>
+    </div>
+
+
+<!-- registreer knop-->
+        
+    <button type="button" class="btn btn-primary" id="RegistreerBtn">Registreer</button>
+
+          <!-- einde col -8 div -->
+        </div>
+        <!-- alerts -->
+        <div class="col-sm-4">
+            <div id="ErrorsAlert" >
+                <div class="alert alert-danger" role="alert">
+                    <h4>Errors!</h4>
+                    <p id="ErrorP"></p>
+                  </div>
+            </div>
+            <div id="SuccesAlert">
+                <div class="alert alert-success" role="alert">
+                    <h4>Succes!</h4>
+                    <p> Je boek werd geregistreerd, je ontvangt binnen de 10 werkdagen feedback.  </p>
+                  </div>
+            </div>
+            <div id="SamenvattingAlert">
+                <div class="alert alert-primary" role="alert">
+                    <h4>SamenVatting</h4>
+                    <p></p>
+                  </div>
+            </div>
+        </div>
+
+          <!-- einde row mb-3 div -->
+        </div>
+          <!-- einde container -->
+        </div>
+        <script>
+            
+        Init()
+
+        </script>
+</body>
+</html>
